@@ -1,63 +1,35 @@
-import React, { useState, useEffect } from 'react';
-import EntryForm from './components/EntryForm';
-import EntryList from './components/EntryList';
-import { Entry, EntryFormData } from './types';
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
-const API_URL = 'http://localhost:3333/api';
-
-const App: React.FC = () => {
-  const [entries, setEntries] = useState<Entry[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetchEntries();
-  }, []);
-
-  const fetchEntries = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(`${API_URL}/entries`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch entries');
-      }
-      const data = await response.json();
-      setEntries(data);
-    } catch (error) {
-      console.error('Error fetching entries:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleSubmit = async (formData: EntryFormData) => {
-    try {
-      const response = await fetch(`${API_URL}/entries`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to create entry');
-      }
-
-      // Refresh entries after successful submission
-      fetchEntries();
-    } catch (error) {
-      console.error('Error creating entry:', error);
-      throw error;
-    }
-  };
+function App() {
+  const [count, setCount] = useState(0)
 
   return (
-    <div className="app">
-      <h1>Life Tracking</h1>
-      <EntryForm onSubmit={handleSubmit} />
-      <EntryList entries={entries} isLoading={isLoading} />
-    </div>
-  );
-};
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
+  )
+}
 
-export default App;
+export default App
