@@ -1,0 +1,26 @@
+life-tracking/
+├── backend/
+│   ├── app.py
+│   ├── config.py
+│   ├── models.py
+│   ├── routes.py
+│   └── requirements.txt
+├── frontend/
+│   ├── public/
+│   │   ├── index.html
+│   │   └── favicon.ico
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── EntryForm.tsx
+│   │   │   └── EntryList.tsx
+│   │   ├── types/
+│   │   │   └── index.ts
+│   │   ├── App.tsx
+│   │   ├── index.tsx
+│   │   └── index.css
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── .gitignore
+├── database/
+│   └── schema.sql
+└── README.md
